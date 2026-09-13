@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <!-- Aggiunto "defer" per far funzionare lo script posizionato in alto -->
+    <script src="script.js" defer></script>
+    <title>Document</title>
+</head>
+<body>
+    <div class="login-menu">
+        <h1 class="text-login">LOGIN PAGE</h1>
+        
+        <!-- Primo input per il nome -->
+        <input type="text" id="username" name="username" class="input-name" placeholder="Nome utente">
+        <br><br>
+        
+        <!-- Secondo input modificato in type="password" e id="password" -->
+        <input type="password" id="password" name="password" class="input-pass" placeholder="Password">
+        <br><br>
+        
+        <!-- Aggiunto testo al bottone -->
+        <button class="button-confirm"></button>
+        
+        <!-- Un paragrafo per mostrare l'errore se i dati sono sbagliati -->
+        <p id="errore" class="errore-login">
+            Dati non validi!
+        </p>
+    </div> <!-- Chiusura del div login-menu che mancava -->
+</body>
+</html>
