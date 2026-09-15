@@ -1,32 +1,106 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="it">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <!-- Aggiunto "defer" per far funzionare lo script posizionato in alto -->
-    <script src="script.js" defer></script>
-    <title>Document</title>
+    <title>Accesso Sistema</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        body {
+            background-color: #000000;
+            color: #ffffff;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .login-card {
+            background-color: #111111;
+            border: 1px solid #333333;
+            padding: 30px;
+            width: 100%;
+            max-width: 360px;
+            text-align: center;
+        }
+
+        h2 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px;
+            background: #000000;
+            border: 1px solid #ffffff;
+            color: #ffffff;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.2rem;
+            text-align: center;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+            outline: none;
+        }
+
+        button {
+            width: 100%;
+            padding: 12px;
+            background: #ffffff;
+            color: #000000;
+            border: none;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        button:hover {
+            background: #cccccc;
+        }
+    </style>
 </head>
 <body>
-    <div class="login-menu">
-        <h1 class="text-login">LOGIN PAGE</h1>
-        
-        <!-- Primo input per il nome -->
-        <input type="text" id="username" name="username" class="input-name" placeholder="Nome utente">
-        <br><br>
-        
-        <!-- Secondo input modificato in type="password" e id="password" -->
-        <input type="password" id="password" name="password" class="input-pass" placeholder="Password">
-        <br><br>
-        
-        <!-- Aggiunto testo al bottone -->
-        <button class="button-confirm"></button>
-        
-        <!-- Un paragrafo per mostrare l'errore se i dati sono sbagliati -->
-        <p id="errore" class="errore-login">
-            Dati non validi!
-        </p>
-    </div> <!-- Chiusura del div login-menu che mancava -->
+
+    <div class="login-card">
+        <h2>ACCESSO</h2>
+        <input type="password" id="pass-code" placeholder="PIN" autofocus>
+        <button id="btn-login">ENTRA</button>
+    </div>
+
+    <script>
+        const passInput = document.getElementById("pass-code");
+        const btnLogin = document.getElementById("btn-login");
+
+        function verificaCodice() {
+            const code = passInput.value.trim();
+
+            if (code === "00") {
+                window.location.href = "verificaprezzo.html";
+            } else if (code === "908070") {
+                window.location.href = "home.html";
+            } else {
+                alert("Codice errato!");
+                passInput.value = "";
+                passInput.focus();
+            }
+        }
+
+        btnLogin.addEventListener("click", verificaCodice);
+        passInput.addEventListener("keypress", (e) => {
+            if (e.key === "Enter") verificaCodice();
+        });
+    </script>
+
 </body>
 </html>

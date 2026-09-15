@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifica Prezzo</title>
+    <link rel="stylesheet" href="style-verificaprezzo.css">
+    <script src="verificaprezzo.js" defer></script>
+</head>
+<body>
+
+    <div class="container">
+        <h1>VERIFICA PREZZO</h1>
+
+        <div class="field-group">
+            <label for="seleziona-modello">SELEZIONA MODELLO:</label>
+            <input type="text" id="seleziona-modello" list="lista-modelli" placeholder="Cerca o seleziona..." autocomplete="off">
+            
+            <!-- ======================================================= -->
+            <!-- 🟢 ZONA MODIFICABILE: LISTINO MODELLI                  -->
+            <!-- Aggiungi o modifica le opzioni della lista qui sotto    -->
+            <!-- ======================================================= -->
+            <datalist id="lista-modelli">
+                <option value="Oxford Royal Calfskin (Nero)"></option>
+                <option value="Derby Suede Heritage (Marrone)"></option>
+                <option value="Monk Strap Doppia Fibbia (Cognac)"></option>
+                <option value="Mocassino Velvet Gold Buckle (Nero)"></option>
+                <option value="Sneaker Leather Minimal (Bianco)"></option>
+                <option value="Stivaletto Chelsea Python Edition"></option>
+                <option value="Pumps Stiletto Silk 105 (Nero)"></option>
+                <option value="Sandalo Jewel Crystal 90 (Argento)"></option>
+            </datalist>
+            <!-- ======================================================= -->
+        </div>
+
+        <button id="btn-verifica">VERIFICA</button>
+
+        <div id="risultato-prezzo" class="risultato-box">
+            --.-- €
+        </div>
+    </div>
+
+</body>
+</html>
