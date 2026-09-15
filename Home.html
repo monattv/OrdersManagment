@@ -32,7 +32,7 @@
 
         .dashboard-container {
             width: 100%;
-            max-width: 500px; /* Ottimizzato per schermo telefono */
+            max-width: 500px;
             background: #000000;
             border: 2px solid #ffffff;
             padding: 16px;
@@ -414,11 +414,8 @@
     <script>
         const defaultPhoto = 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1"><rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>';
 
-        let ordini = [
-            { id: "#ORD-1001", cliente: "Mario Rossi", modello: "Oxford Royal Calfskin", taglia: "42", importo: 650.00, stato: "SPEDITO", foto: defaultPhoto },
-            { id: "#ORD-1002", cliente: "Giuseppe Verdi", modello: "Derby Suede Heritage", taglia: "43", importo: 580.00, stato: "IN LAVORAZIONE", foto: defaultPhoto },
-            { id: "#ORD-1003", cliente: "Laura Bianchi", modello: "Pumps Silk 105", taglia: "38", importo: 790.00, stato: "IN LAVORAZIONE", foto: defaultPhoto }
-        ];
+        // Carica gli ordini salvati nel browser, altrimenti parte con una lista vuota
+        let ordini = JSON.parse(localStorage.getItem('ordiniData')) || [];
 
         const ordersList = document.getElementById('orders-list');
         const searchInput = document.getElementById('search-input');
@@ -431,6 +428,11 @@
         const editIndexInput = document.getElementById('edit-index');
         const modalTitle = document.getElementById('modal-title');
 
+        // Funzione per salvare gli ordini nella memoria locale del dispositivo
+        function salvaSulDispositivo() {
+            localStorage.setItem('ordiniData', JSON.stringify(ordini));
+        }
+
         // Render delle schede ordini
         function renderOrders() {
             ordersList.innerHTML = '';
@@ -439,6 +441,10 @@
             let totali = 0;
             let inLavorazione = 0;
             let incasso = 0;
+
+            if (ordini.length === 0) {
+                ordersList.innerHTML = '<div style="text-align: center; color: #888; font-size: 0.85rem; padding: 20px;">Nessun ordine salvato. Clicca su "+ NUOVO ORDINE".</div>';
+            }
 
             ordini.forEach((ord, index) => {
                 const textSearch = `${ord.id} ${ord.cliente} ${ord.modello} ${ord.taglia} ${ord.stato}`.toLowerCase();
@@ -516,7 +522,7 @@
             function salvaDati(fotoUrl) {
                 if (idx === -1) {
                     // Creazione Nuovo Ordine
-                    const nuovoId = "#ORD-" + (1001 + ordini.length + Math.floor(Math.random() * 50));
+                    const nuovoId = "#ORD-" + Math.floor(1000 + Math.random() * 9000);
                     ordini.unshift({
                         id: nuovoId,
                         cliente: document.getElementById('input-cliente').value.trim(),
@@ -538,6 +544,7 @@
                     }
                 }
 
+                salvaSulDispositivo(); // Salva permanentemente sul dispositivo
                 renderOrders();
                 modal.style.display = 'none';
             }
@@ -558,6 +565,7 @@
             const ord = ordini[index];
             if (confirm(`Eliminare l'ordine ${ord.id} di ${ord.cliente}?`)) {
                 ordini.splice(index, 1);
+                salvaSulDispositivo(); // Salva le modifiche dopo l'eliminazione
                 renderOrders();
             }
         }
