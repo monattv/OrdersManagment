@@ -10,7 +10,12 @@ document.addEventListener("DOMContentLoaded", () => {
         "Versache Chain": "55",
         "Dolce & Gabbana": "70",
         "Zanotti": "80",
-        "Rick Owens": "90",
+        "LV Skate": "90",
+        "LV Trainer": "90",
+        "McQueen": "60",
+        "Yeezy 350": "55",
+        "Jordan 4": "55",
+        "Dior B23": "65",
     };
     // =========================================================================
 
